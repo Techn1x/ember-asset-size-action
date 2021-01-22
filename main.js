@@ -26,11 +26,11 @@ async function run() {
 
     const fileDiffs = diffSizes(normaliseFingerprint(masterAssets), normaliseFingerprint(prAssets));
 
-    const uniqueCommentIdentifier = '_Created by ember-asset-size-action_'
+    const uniqueCommentIdentifier = '_Created by ember-asset-size-action_';
     const body = `${buildOutputText(fileDiffs)}\n\n${uniqueCommentIdentifier}`;
 
     const updateExistingComment = getInput('update-comments', { required: false });
-    let existingComment = false
+    let existingComment = false;
 
     if (updateExistingComment) {
       const { data: comments } = await octokit.issues.listComments({
@@ -38,9 +38,7 @@ async function run() {
         repo: context.repo.repo,
         issue_number: pullRequest.number,
       });
-      existingComment = comments.find(comment => {
-        return comment.user.login == 'github-actions[bot]' && comment.body.endsWidth(uniqueCommentIdentifier);
-      })
+      existingComment = comments.find(comment => comment.user.login === 'github-actions[bot]' && comment.body.endsWidth(uniqueCommentIdentifier));
     }
 
     try {
