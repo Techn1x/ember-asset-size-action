@@ -34,6 +34,8 @@ File | raw | gzip
 --- | --- | ---
 ember-website-fastboot.js| 0 B| 0 B
 ember-website.css| 0 B| 0 B
-vendor.css| 0 B| 0 B`);
+vendor.css| 0 B| 0 B
+
+_Created by ember-asset-size-action_`);
   });
 });
