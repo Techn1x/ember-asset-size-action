@@ -3,6 +3,15 @@ import { buildOutputText } from '../lib/helpers';
 
 describe('Build output Text', function () {
   it('should show the correct table output for a file diff', function () {
+    const prAssets = {
+      'auto-import-fastboot.js': { raw: 221142, gzip: 76707, brotli: null },
+      'ember-website-fastboot.js': { raw: 956, gzip: 414, brotli: null },
+      'ember-website.js': { raw: 389351, gzip: 71886, brotli: null },
+      'vendor.js': { raw: 2717593, gzip: 796082, brotli: null },
+      'ember-website.css': { raw: 40196, gzip: 10223, brotli: null },
+      'vendor.css': { raw: 57988, gzip: 17920, brotli: null },
+    }
+
     const diff = {
       'auto-import-fastboot.js': { raw: 221142, gzip: 76707 },
       'ember-website.js': { raw: -2995, gzip: -1013 },
@@ -12,7 +21,7 @@ describe('Build output Text', function () {
       'vendor.css': { raw: 0, gzip: 0 },
     };
 
-    const text = buildOutputText(diff);
+    const text = buildOutputText(diff, prAssets);
 
     expect(text).to.equal(`Files that got Bigger 🚨:
 
